@@ -1,0 +1,53 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os" PolicyId="IOTAwUCONPolicy" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:permit-overrides" Version="1.0">
+  <Target>
+     <AnyOf>
+        <AllOf>
+           <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">atoi1qztx22lp5n69f4etlr6600qcdswrj8terzkga65msddc3sh4sdx02rxjqsq</AttributeValue>
+              <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+           </Match>
+        </AllOf>
+     </AnyOf>
+  </Target>
+  <Rule Effect="Permit" RuleId="permit">
+    <Description>Authorise the user if the amount if the expected value of the data</Description>
+    <Target>
+        <AnyOf>
+           <AllOf>
+              <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:integer-equal">
+                 <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">1000000</AttributeValue>
+                 <AttributeDesignator AttributeId="http://iotawucon/nbiotas" Category="http://iotawucon/category" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+              </Match>
+           </AllOf>
+         </AnyOf>
+       </Target>
+    <AdviceExpressions>
+    <AdviceExpression AdviceId="permit-amount" AppliesTo="Permit">
+    <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:example:attribute:text">
+  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">The amount of iotas paid is correct</AttributeValue>
+  </AttributeAssignmentExpression>
+    </AdviceExpression>
+    </AdviceExpressions>
+</Rule>
+<Rule Effect="Permit" RuleId="permit">
+  <Description>Authorise the user if the amount if the expected value of the data</Description>
+  <Target>
+      <AnyOf>
+         <AllOf>
+            <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:integer-equal">
+               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">atoi1qpty45svr0r5s9nxatzaszkde8syt4etrsmea50pmc3l2swyskc0q8wlpjs</AttributeValue>
+               <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+            </Match>
+         </AllOf>
+       </AnyOf>
+     </Target>
+  <AdviceExpressions>
+  <AdviceExpression AdviceId="permit-amount" AppliesTo="Permit">
+  <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:example:attribute:text">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">The destination address is the data owner address</AttributeValue>
+</AttributeAssignmentExpression>
+  </AdviceExpression>
+  </AdviceExpressions>
+</Rule>
+ <Rule RuleId="deny-rule" Effect="Deny"/>
+</Policy>
